@@ -70,4 +70,22 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <!-- task definition -->
+    <taskdef 
+        name="plantuml"
+        classname="net.sourceforge.plantuml.ant.PlantUmlTask"
+        classpath="plantuml.jar" 
+    />
+
+    <!-- process ./src files -->
+    <target depends="javadoc-build" name="build-uml">
+      <mkdir dir="${dist.javadoc.dir}/images"/>
+      <!-- there is an issue where relative paths do not work -->
+      <plantuml output="/f/Programming/Java/Platformer-1/${dist.javadoc.dir}/images/" verbose="true">
+          <fileset dir="./src">
+              <include name="**/*.java" />
+              <exclude name="**/*Test.java" />
+          </fileset>
+      </plantuml>
+    </target>
 </project>
