@@ -35,36 +35,50 @@ public class Player extends JPanel {
         
         switch (dir) {
             case LEFT:
-                movement.setX(-1);
+                movement.setX(-2);
                 break;
             case RIGHT:
-                movement.setX(1);
+                movement.setX(2);
                 break;
             default:
                 movement.setX(0);
         }
     }
-    
+    public void jump() {
+        if (movement.getY() == 0) {
+            movement.setY(movement.getY()+10);
+        }
+    }
     public void update() {
-        this.position.setX(
-                this.position.getX() + this.movement.getX()
+        
+        System.out.println(movement);
+        movement.setY(movement.getY()-1);
+        
+        if (position.getY() <= 0 && movement.getY() < 0) {
+            position.setY(0);
+            movement.setY(0);
+        }
+        
+        
+        position.setX(
+                position.getX() + movement.getX()
         );
         
         Rectangle coll = game.collision(getBounds());
         if (coll != null) {
-            this.movement.setY(0);
+            movement.setY(0);
         }
         
-        this.position.setY(
-                this.position.getY() + this.movement.getY()
+        position.setY(
+                position.getY() + movement.getY()
         );
         
         int h = game.getSize().height;
         
         setBounds(
                 new Rectangle(
-                        Math.round((float)this.position.getX()),
-                        h - 10 - Math.round((float)this.position.getY()),
+                        Math.round( (float)position.getX() ),
+                        h - 10 - Math.round( (float)position.getY() ),
                         10, 10
                 )
         );

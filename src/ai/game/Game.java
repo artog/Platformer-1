@@ -74,8 +74,9 @@ public class Game extends JPanel {
         Player.Movement dir = Player.Movement.NONE;
         switch (e) {
             case JUMP: 
-//              // jump
-                break;
+                System.out.println("Event: JUMP");
+                this.player.jump();
+                return;
             case MOVE_LEFT: 
                 dir = Player.Movement.LEFT;
                 break;
@@ -85,8 +86,8 @@ public class Game extends JPanel {
             case STOP_MOVE: 
                 dir = Player.Movement.NONE;
                 break;
-            default:
         }
+        System.out.println("Event: "+dir);
         player.move(dir);
     }
     
