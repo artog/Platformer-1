@@ -25,10 +25,8 @@ public class Main extends JFrame {
      * Creates new form Main
      */
     public Main() {
-        this.setSize(new Dimension(1000,500));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         
         menu.add(new Menu());
         this.setJMenuBar(menu);
@@ -60,12 +58,13 @@ public class Main extends JFrame {
             }
         });
         int h = this.getSize().height;
-        System.out.println(h);
+        
         this.game = new Game();
         this.add(game,BorderLayout.CENTER);
         
         h = game.getSize().height;
-        System.out.println(h);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
 
     /**
